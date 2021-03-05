@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: nginx:latest
-    command: "${NDL_REPO_ROOT}/data/test-https/init-nginx-test.sh"
+    entrypoint: "${NDL_REPO_ROOT}/data/test-https/init-nginx-test.sh"
     ports:
       - "80:80"
     volumes:
