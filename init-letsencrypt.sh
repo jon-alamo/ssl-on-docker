@@ -7,6 +7,11 @@ then
   set +o allexport
 fi
 
+# Replace envs in nginx config template
+export DOLLAR='$'
+envsubst < nginx.conf.template > ./data/nginx/app.conf
+
+
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo 'Error: docker-compose is not installed.' >&2
   exit 1
