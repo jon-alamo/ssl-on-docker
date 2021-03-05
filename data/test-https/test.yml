@@ -8,8 +8,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../../:/repo
-#      - ./nginx:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
       - ./www:/www
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/www:/var/www/certbot
