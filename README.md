@@ -7,7 +7,7 @@ and nginx.
 
 ## Check if 80 port is open
  
-1. Start test environment on your host 
+1. Start http test environment on your host 
    ```
     docker-compose up -f <path-to-this-repo-root>/data/test-http/test.yml up
    ```
@@ -50,6 +50,17 @@ inbound connections to your host machine.
    chmod +x <path-to-this-repo-root>/init-letsencrypt.sh
    sudo <path-to-this-repo-root>/init-letsencrypt.sh
    ```
+
+## Test https connection
+1. Start https test environment on your host 
+   ```
+    docker-compose up -f <path-to-this-repo-root>/data/test-https/test.yml up
+   ```
+2. Go to a web browser and try to connect via http to your host:
+    ```
+    https://your-host-name
+    ```
+4. You will know if your 443 port is open and your SSL working.
 
 ## Configure your app
 
