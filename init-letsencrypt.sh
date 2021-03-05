@@ -9,7 +9,7 @@ fi
 
 # Replace envs in nginx config template
 export DOLLAR='$'
-envsubst < nginx.conf.template > ./data/nginx/app.conf
+envsubst < ${NDL_REPO_ROOT}/nginx.conf.template > ${NDL_REPO_ROOT}/data/nginx/app.conf
 
 
 if ! [ -x "$(command -v docker-compose)" ]; then
