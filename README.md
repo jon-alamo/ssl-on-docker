@@ -9,7 +9,7 @@ and nginx.
  
 1. Start test environment on your host 
    ```
-    docker-compose up -f <path-to-this-repo-root>/data/test/test.yml up
+    docker-compose up -f <path-to-this-repo-root>/data/test-http/test.yml up
    ```
 
 2. Wait until  you see something in output like:
@@ -27,7 +27,7 @@ and nginx.
 
 5. Stop docker test environment (CRTL+C) or with:
     ```
-    docker-compose up -f <path-to-this-repo-root>/data/test/test.yml down
+    docker-compose up -f <path-to-this-repo-root>/data/test-http/test.yml down
     ```
 
 6. If not don't have 80 port open, or you don't know, check your DNS
