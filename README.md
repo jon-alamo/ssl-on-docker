@@ -42,6 +42,7 @@ inbound connections to your host machine.
     HOST_NAME=whatever.com
     OWNER_EMAIL=myemail@mydomain.com
     NDL_REPO_ROOT=<path-to-this-repo-root>
+    STAGING=1/0  to set staging mode (1) or production (0)
     ```
 
 2. Make init-letsencrypt.sh executable and run it from this repo root:
