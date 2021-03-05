@@ -5,6 +5,9 @@ with auto-renewal combining certbot and nginx in a docker-compose environment.
 This repo is intended to be used with projects which use of docker-compose
 and nginx.
 
+Also, the following steps are expected to be executed in a machine with a 
+public IP and a DNS mapping a domain name to it.
+
 ## Check if 80 port is open
  
 1. Start http test environment on your host 
