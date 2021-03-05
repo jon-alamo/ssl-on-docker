@@ -4,13 +4,15 @@ services:
 
   nginx:
     image: nginx:latest
-    command: "/repo/data/test-https/init-nginx-test.sh"
+    entrypoint: "/repo/data/test-https/init-nginx-test.sh"
     ports:
       - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ../../:/repo
+#      - ./nginx:/etc/nginx/conf.d
       - ./www:/www
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/www:/var/www/certbot
     environment:
-      - HOST_NAME=${HOST_NAME}
+      HOST_NAME=${HOST_NAME}
