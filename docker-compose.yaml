@@ -3,16 +3,15 @@ version: '3'
 services:
 
   nginx:
-    image: nginx:1.15-alpine
+    image: nginx:latest
+    command: './run-snginx.sh'
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./data/nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    environment:
-      - NGINX_HOST: ${NGINX_HOST}
+      - ../data/nginx:/etc/nginx/conf.d
+      - ../data/certbot/conf:/etc/letsencrypt
+      - ../data/certbot/www:/var/www/certbot
 
   certbot:
     image: certbot/certbot
