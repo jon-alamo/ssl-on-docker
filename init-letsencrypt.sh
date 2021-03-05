@@ -12,7 +12,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-alias docker-compose 'docker-compose -f ${NDL_REPO_ROOT}'
+alias docker-compose='docker-compose -f ${NDL_REPO_ROOT}'
 
 domains=${HOST_NAME}
 rsa_key_size=4096

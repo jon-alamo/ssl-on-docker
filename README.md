@@ -41,13 +41,13 @@ inbound connections to your host machine.
     ```
     HOST_NAME=whatever.com
     OWNER_EMAIL=myemail@mydomain.com
-    NDL_REPO_ROOT=path/to/this/repository/root/in/your/local/file/system
+    NDL_REPO_ROOT=<path-to-this-repo-root>
     ```
 
 2. Make init-letsencrypt.sh executable and run it from this repo root:
     ```
-   chmod +x init-letsencrypt.sh
-   sudo ./init-letsencrypt.sh
+   chmod +x <path-to-this-repo-root>/init-letsencrypt.sh
+   sudo <path-to-this-repo-root>/init-letsencrypt.sh
    ```
 
 ## Configure your app
