@@ -59,6 +59,7 @@ inbound connections to your host machine.
     ```
     nginx:
       image: nginx:latest
+      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
       ports:
         - "80:80"
         - "443:443"
@@ -69,6 +70,7 @@ inbound connections to your host machine.
    
     certbot:
       image: certbot/certbot
+      entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
       volumes:
         - <this-repo-root>/data/certbot/conf:/etc/letsencrypt
         - <this-repo-root>/data/certbot/www:/var/www/certbot

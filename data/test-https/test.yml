@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: nginx:latest
-    command: 'export DOLLAR="$" && envsubst < ${NDL_REPO_ROOT}/nginx.conf.template > /etc/nginx/app.conf && nginx -g "daemon off;"'
+    command: "./init-nginx-text.sh"
     ports:
       - "80:80"
     volumes:
