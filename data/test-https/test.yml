@@ -14,4 +14,4 @@ services:
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/www:/var/www/certbot
     environment:
-      HOST_NAME=$HOST_NAME
+      - HOST_NAME=${HOST_NAME}
