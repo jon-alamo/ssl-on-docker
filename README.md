@@ -1,7 +1,9 @@
 # nginx-docker-letsencrypt
-Basic boilerplate to combine let's encrypt certbot and nginx in a docker
- environment
+Basic boilerplate to create SSL certificates from letsencrypt for your host
+with auto-renewal combining certbot and nginx in a docker-compose environment.
 
+This repo is intended to be used with projects which use of docker-compose
+and nginx.
 
 ## how-to
 
