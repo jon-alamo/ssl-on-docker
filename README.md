@@ -7,20 +7,42 @@ and nginx.
 
 ## how-to
 
-1. Create .env file with following variables
+0. Check your port 80 is open (i case you are not sure) 
+    1. Start test environment on your host 
+       ```
+        docker-compose up -f <path-to-this-repo-root>/test-env/test.yml up
+       ```
+
+    2. Wait until  you see something in output like:
+        ```
+        /docker-entrypoint.sh: Configuration complete; ready for start up
+        ```
+   
+    3. Go to a web browser and try to connect via http to your host:
+        ```
+        http://your-host-name
+        ```
+    
+    4. You will know if your 80 port is open or not at this point.
+    
+    5. If not, check your DNS settings and firewalls/networking rules. If 
+    you are using cloud hosting services, you will most probably need to
+    explicitly allow http/https inbound connections to your host machine.   
+
+2. Create .env file with following variables
     ```
     HOST_NAME=whatever.com
     OWNER_EMAIL=myemail@mydomain.com
     NDL_REPO_ROOT=path/to/this/repository/root/in/your/local/file/system
     ```
 
-2. Make init-letsencrypt.sh executable and run it from this repo root:
+3. Make init-letsencrypt.sh executable and run it from this repo root:
     ```
    chmod +x init-letsencrypt.sh
    sudo ./init-letsencrypt.sh
    ```
 
-3. Create volume mapping in nginx and certbot services from your project's
+4. Create volume mapping in nginx and certbot services from your project's
  docker-compose pointing to this repo's directory as follows:
 
     ```
@@ -42,7 +64,7 @@ and nginx.
 
     ```
 
-4. In your project's nginx config file, add following directives, replacing
+5. In your project's nginx config file, add following directives, replacing
  every occurrence of <your-host-name>:
     ```
     server {
@@ -72,4 +94,4 @@ and nginx.
 
     }
     ```
-5. Run your docker-compose as usually
+6. Run your docker-compose as usually
