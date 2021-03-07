@@ -25,5 +25,5 @@ services:
   frontend:
     image: nginx:latest
     volumes:
-      - ./backend/nginx:/etc/nginx/conf.d
+      - ./frontend/nginx:/etc/nginx/conf.d
       - ./frontend/www:/www
