@@ -1,3 +1,10 @@
+upstream backend {
+  server backend:8000 fail_timeout=0;
+}
+
+upstream frontend {
+ server frontend:80 fail_timeout=0;
+}
 
 server {
     listen 80;
@@ -17,11 +24,11 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location /backend {
-        proxy_pass http://backend:8000;
+        proxy_pass http://backend;
     }
 
     location / {
-        proxy_pass http://frontend:80;
+        proxy_pass http://frontend;
     }
 
 }
