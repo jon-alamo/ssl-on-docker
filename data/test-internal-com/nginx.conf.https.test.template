@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    server_name ${HOST_NAME};
+    location / {
+        return 301 https://${DOLLAR}host${DOLLAR}request_uri;
+    }
+}
+server {
+    listen 443 ssl;
+    server_name ${HOST_NAME};
+
+    ssl_certificate /etc/letsencrypt/live/${HOST_NAME}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${HOST_NAME}/privkey.pem;
+
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        root /www/data/;
+    }
+}
