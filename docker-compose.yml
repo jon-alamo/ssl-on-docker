@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: nginx:latest
-    command: '/nginx-docker-letsencrypt/run-snginx.sh'
+    command: './nginx-docker-letsencrypt/run-snginx.sh'
     ports:
       - "80:80"
       - "443:443"
