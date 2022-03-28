@@ -53,7 +53,8 @@ echo
 
 echo "### Starting nginx ..."
 docker-compose -f ${NDL_REPO_ROOT}/docker-compose.yml up --force-recreate -d nginx
-echo
+sleep 5
+echo `docker ps`
 
 echo "### Deleting dummy certificate for $domains ..."
 docker-compose -f ${NDL_REPO_ROOT}/docker-compose.yml run --rm --entrypoint "\
