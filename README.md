@@ -1,4 +1,4 @@
-# nginx-docker-letsencrypt
+# SSL on Docker with Nginx and Certbot
 Basic boilerplate to create SSL certificates from letsencrypt for your host
 with auto-renewal combining certbot and nginx in a docker-compose environment.
 
