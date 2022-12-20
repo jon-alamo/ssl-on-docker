@@ -8,20 +8,19 @@ and nginx.
 Also, the following steps are expected to be executed in a machine with a 
 public IP and a DNS mapping a domain name to it.
 
-## Add this repository as a submodule in your repository's root
+## Clone this repository into your repository's root
 1. From repository's root
     ```
-   git submodule add git@github.com:jon-alamo/ssl-on-docker.git
-   git add .gitmodules
-   git commit -m "Added ssl-on-docker repostiory as submodule" .gitmodules
-   git push
+    git submodule add git@github.com:jon-alamo/ssl-on-docker.git
+    git add .gitmodules
+    git commit -m "Added ssl-on-docker repostiory as submodule" .gitmodules
+    git push
     ```
 2. Create env vars
    If not exits, create .env file on the main repository's root and add the following variables:
-
     ```
     HOST_NAME=<host-name>
-    NDL_REPO_ROOT=<path-to-ssl-on-docker-repository-relative-to-mains-root>
+    NDL_REPO_ROOT=./ssl-on-docker
     OWNER_EMAIL=<email>
     STAGING=1/0 (1 to test all configuration before creating real certificates)
     ```
@@ -55,7 +54,7 @@ public IP and a DNS mapping a domain name to it.
  
 1. Start http test environment on your host 
    ```
-    docker compose -f <path-to-this-repo-root>/data/test-http/test.yml up
+    docker compose -f ./ssl-on-docker/data/test-http/test.yml up
    ```
 
 2. Wait until  you see something in output like:
@@ -73,7 +72,7 @@ public IP and a DNS mapping a domain name to it.
 
 5. Stop docker test environment (CRTL+C) or with:
     ```
-    docker compose -f <path-to-this-repo-root>/data/test-http/test.yml down
+    docker compose -f ./ssl-on-docker/data/test-http/test.yml down
     ```
 
 6. If not don't have 80 port open, or you don't know, check your DNS
@@ -87,20 +86,20 @@ inbound connections to your host machine.
     ```
     HOST_NAME=whatever.com
     OWNER_EMAIL=myemail@mydomain.com
-    NDL_REPO_ROOT=<path-to-this-repo-root>
+    NDL_REPO_ROOT=./ssl-on-docker
     STAGING=1/0  to set staging mode (1) or production (0)
     ```
 
 2. Make init-letsencrypt.sh executable and run it from this repo root:
     ```
-   chmod +x <path-to-this-repo-root>/init-letsencrypt.sh
-   sudo <path-to-this-repo-root>/init-letsencrypt.sh
+   chmod +x ./ssl-on-docker/init-letsencrypt.sh
+   sudo ./ssl-on-docker/init-letsencrypt.sh
    ```
 
 ## Test https connection
 1. Start https test environment on your host 
    ```
-    docker-compose up -f <path-to-this-repo-root>/data/test-https/test.yml up
+    docker compose -f ./ssl-on-docker/data/test-https/test.yml --env-file .env up
    ```
 2. Go to a web browser and try to connect via http to your host:
     ```
