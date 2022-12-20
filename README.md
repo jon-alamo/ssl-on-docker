@@ -8,6 +8,49 @@ and nginx.
 Also, the following steps are expected to be executed in a machine with a 
 public IP and a DNS mapping a domain name to it.
 
+## Add this repository as a submodule in your repository's root
+1. From repository's root
+    ```
+   git submodule add git@github.com:jon-alamo/ssl-on-docker.git
+   git add .gitmodules
+   git commit -m "Added ssl-on-docker repostiory as submodule" .gitmodules
+   git push
+    ```
+2. Create env vars
+   If not exits, create .env file on the main repository's root and add the following variables:
+
+    ```
+    HOST_NAME=<host-name>
+    NDL_REPO_ROOT=<path-to-ssl-on-docker-repository-relative-to-mains-root>
+    OWNER_EMAIL=<email>
+    STAGING=1/0 (1 to test all configuration before creating real certificates)
+    ```
+
+3. Add nginx and certbot
+   If not exists, add nginx and certbot services in your production docker-compose file, as appear in ssl-on-docker/docker-compose.yml.
+   Make sure the volumes point to the right local folders, as in the ssl-on-docker, volume paths are relative to the ssl-on-docker root. To do that, add ./ssl-on-docker at the beginning of every volume map so paths are relative to main repo's root.
+    ```
+    ...
+    nginx:
+        ...
+        environment:
+            HOST_NAME: ${HOST_NAME}
+            NDL_REPO_ROOT: ${NDL_REPO_ROOT}
+        volumes:
+            - ./ssl-on-docker/data/nginx:/etc/nginx/conf.d
+            - ./ssl-on-docker/data/certbot/conf:/etc/letsencrypt
+            - ./ssl-on-docker/data/certbot/www:/var/www/certbot
+            - ./ssl-on-docker:/ssl-on-docker
+        ...
+    
+    certbot:
+        ...
+        volumes:
+            - ./ssl-on-docker/data/certbot/conf:/etc/letsencrypt
+            - ./ssl-on-docker/data/certbot/www:/var/www/certbot
+            - ./ssl-on-docker/data/certbot/logs:/var/log/letsencrypt
+    ```
+
 ## Check if 80 port is open
  
 1. Start http test environment on your host 
