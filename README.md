@@ -55,7 +55,7 @@ public IP and a DNS mapping a domain name to it.
  
 1. Start http test environment on your host 
    ```
-    docker-compose up -f <path-to-this-repo-root>/data/test-http/test.yml up
+    docker compose -f <path-to-this-repo-root>/data/test-http/test.yml up
    ```
 
 2. Wait until  you see something in output like:
@@ -73,7 +73,7 @@ public IP and a DNS mapping a domain name to it.
 
 5. Stop docker test environment (CRTL+C) or with:
     ```
-    docker-compose up -f <path-to-this-repo-root>/data/test-http/test.yml down
+    docker compose -f <path-to-this-repo-root>/data/test-http/test.yml down
     ```
 
 6. If not don't have 80 port open, or you don't know, check your DNS
@@ -83,7 +83,7 @@ inbound connections to your host machine.
 
 ## Generate certificates
 
-1. Create .env file with following variables
+1. Create .env file with following variables in main's repo directory
     ```
     HOST_NAME=whatever.com
     OWNER_EMAIL=myemail@mydomain.com
