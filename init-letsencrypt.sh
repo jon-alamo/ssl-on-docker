@@ -9,6 +9,7 @@ fi
 
 # Set execution permissions to run-nginx.sh file
 chmod +x ${NDL_REPO_ROOT}/run-nginx.sh
+chmod +x ${NDL_REPO_ROOT}/run-nginx.prod.sh
 
 # Replace envs in nginx config template
 export DOLLAR='$'
