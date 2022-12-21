@@ -10,7 +10,7 @@ fi
 
 # Replace envs in nginx config template
 export DOLLAR='$'
-envsubst < /nginx-conf/nginx.conf > /etc/nginx/app.conf
+envsubst < /nginx-conf/app.conf > /etc/nginx/conf.d/app.conf
 
 #Run nginx
 nginx -g "daemon off;"
