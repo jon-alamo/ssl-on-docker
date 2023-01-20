@@ -31,7 +31,7 @@ public IP and a DNS mapping a domain name to it.
     ```
     ...
     nginx:
-        ...
+        image: nginx:latest
         environment:
             HOST_NAME: ${HOST_NAME}
             NDL_REPO_ROOT: ${NDL_REPO_ROOT}
@@ -43,7 +43,7 @@ public IP and a DNS mapping a domain name to it.
         ...
     
     certbot:
-        ...
+        image: certbot/certbot
         volumes:
             - ./ssl-on-docker/data/certbot/conf:/etc/letsencrypt
             - ./ssl-on-docker/data/certbot/www:/var/www/certbot
