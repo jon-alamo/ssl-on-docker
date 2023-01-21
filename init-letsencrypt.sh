@@ -14,7 +14,7 @@ chmod +x ${NDL_REPO_ROOT}/run-nginx.prod.sh
 # Replace envs in nginx config template
 export DOLLAR='$'
 mkdir -p ${NDL_REPO_ROOT}/data/nginx
-envsubst < ${NDL_REPO_ROOT}/app.conf.template > ${NDL_REPO_ROOT}/data/nginx/app.conf
+envsubst < ${NDL_REPO_ROOT}/nginx.conf.template > ${NDL_REPO_ROOT}/data/nginx/app.conf
 
 
 if ! [ -x "$(command -v docker compose)" ]; then
