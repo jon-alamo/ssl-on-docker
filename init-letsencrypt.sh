@@ -62,16 +62,12 @@ sleep 5
 echo `docker ps`
 
 echo "### Deleting dummy certificate for $domains ..."
-rm -Rf .ssl-on-docker/data/certbot/conf/live/$domains
-rm -Rf .ssl-on-docker/data/certbot/conf/archive/$domains
-rm -Rf .ssl-on-docker/data/certbot/conf/renewal/$domains.conf
 
-
-#docker compose -f ${NDL_REPO_ROOT}/docker-compose.yml run --rm --entrypoint "\
-#  rm -Rf /etc/letsencrypt/live/$domains && \
-#  rm -Rf /etc/letsencrypt/archive/$domains && \
-#  rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
-#echo
+docker compose -f ${NDL_REPO_ROOT}/docker-compose.yml run --rm --entrypoint "\
+  rm -Rf /etc/letsencrypt/live/$domains && \
+  rm -Rf /etc/letsencrypt/archive/$domains && \
+  rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
+echo
 
 
 echo "### Requesting Let's Encrypt certificate for $domains ..."
