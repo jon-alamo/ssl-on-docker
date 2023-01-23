@@ -21,6 +21,10 @@ services:
     entrypoint: ""
     volumes:
       - letsencrypt:/etc/letsencrypt
+    environment:
+      HOST_NAME: ${HOST_NAME}
+      STAGING: ${STAGING}
+      EMAIL: ${EMAIL}
 
   dns:
     build: dns

@@ -12,6 +12,10 @@ services:
         - "80:80"
     depends_on:
         - dns
+    environment:
+      HOST_NAME: ${HOST_NAME}
+      STAGING: ${STAGING}
+      EMAIL: ${EMAIL}
 
   dns:
     build: dns
