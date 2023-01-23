@@ -1,22 +1,35 @@
-version: '3'
+version: '3.7'
 
 services:
 
   nginx:
     image: nginx:latest
-    command: './ssl-on-docker/run-nginx.sh'
+    restart: always
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./data/nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-      - ./:/ssl-on-docker
+      - letsencrypt:/etc/letsencrypt:ro
+      - ../nginx/app.conf:/etc/nginx/app.conf:ro
+    networks:
+      - my-proxy-net
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:latest
+    restart: always
+    command: sh -c "certbot certonly --standalone -d ${HOST_NAME} ${STAGING} --text --agree-tos --email ${EMAIL} --server https://acme-v02.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --preferred-challenges=http && sleep 1d"
+    entrypoint: ""
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-      - ./data/certbot/logs:/var/log/letsencrypt
+      - letsencrypt:/etc/letsencrypt
+
+
+volumes:
+  letsencrypt:
+    external:
+      name: letsencrypt_keys
+
+
+networks:
+  my-proxy-net:
+    external:
+      name: ${NETWORK_NAME}
