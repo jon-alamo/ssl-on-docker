@@ -10,6 +10,19 @@ services:
       - letsencrypt:/etc/letsencrypt
     ports:
         - "80:80"
+    depends_on:
+        - dns
+
+  dns:
+    build: dns
+    container_name: dns
+    environment:
+      DO_API_TOKEN: ${DO_API_TOKEN}
+      DO_DOMAIN: ${DO_DOMAIN}
+      DO_SUBDOMAINS: ${DO_SUBDOMAINS}
+      SLEEP_INTERVAL: ${SLEEP_INTERVAL}
+    command: "./run.sh"
+    restart: always
 
 
 volumes:
