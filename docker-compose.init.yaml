@@ -4,7 +4,7 @@ version: '3.7'
 services:
   certbot:
     image: certbot/certbot:latest
-    command: sh -c "certbot certonly ${DOMAINS_ARGS} ${STAGING_ARG} ${EMAIL_ARG} --standalone --agree-tos --server https://acme-v02.api.letsencrypt.org/directory --verbose --keep-until-expiring --preferred-challenges=http"
+    command: sh -c "certbot certonly ${DOMAIN_ARGS} ${STAGING_ARG} ${EMAIL_ARG} --standalone --agree-tos --server https://acme-v02.api.letsencrypt.org/directory --verbose --keep-until-expiring --preferred-challenges=http"
     entrypoint: ""
     volumes:
       - letsencrypt:/etc/letsencrypt

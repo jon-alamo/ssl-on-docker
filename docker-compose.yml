@@ -17,7 +17,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     restart: always
-    command: sh -c "sh -c "certbot certonly ${DOMAINS_ARGS} ${STAGING_ARG} ${EMAIL_ARG} --standalone --agree-tos --server https://acme-v02.api.letsencrypt.org/directory --verbose --keep-until-expiring --preferred-challenges=http && sleep 1d"
+    command: sh -c "sh -c "certbot certonly ${DOMAIN_ARGS} ${STAGING_ARG} ${EMAIL_ARG} --standalone --agree-tos --server https://acme-v02.api.letsencrypt.org/directory --verbose --keep-until-expiring --preferred-challenges=http && sleep 1d"
     entrypoint: ""
     volumes:
       - letsencrypt:/etc/letsencrypt
