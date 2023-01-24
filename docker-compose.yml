@@ -22,9 +22,9 @@ services:
     volumes:
       - letsencrypt:/etc/letsencrypt
     environment:
-      HOST_NAME: ${HOST_NAME}
-      STAGING: ${STAGING}
-      EMAIL: ${EMAIL}
+      DOMAIN_ARGS: ${HOST_NAME}
+      STAGING_ARG: ${STAGING}
+      EMAIL_ARG: ${EMAIL}
 
   dns:
     build: dns
