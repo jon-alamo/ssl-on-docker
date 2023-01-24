@@ -17,17 +17,25 @@ public IP and a DNS mapping a domain name to it.
     git push
     ```
 2. Create env vars
-   If not exits, create .env file on the main repository's root and add the following variables:
+   If not exits, create .env file on the ssl-on-docker repository's directory and add the following variables:
     ```
-    HOST_NAME=*.domainname.com
-    STAGING=--staging (or leave blank)
-    EMAIL=
-    COMPOSE_PROJECT_NAME=
-    NETWORK_NAME=    
-   ```
+    DOMAIN_ARGS=-d sub1.yourdomain.com -d sub2.yourdomain.com -d yourdomain.com
+    STAGING_ARG=--staging (or leave blank)
+    EMAIL_ARG=<your email>
+    NETWORK_NAME=<main project network name>
+    ```    
+
 3.  Create certificates for the first time
     ```
     docker-compose -f ssl-on-docker/docker-compose.init.yml up
+    ```
+
+4. Prepare nginx configuration
+   Create nginx configuration file called app.conf under nginx directory in your main project's root.
+5. Ensure that the following lines are present in the nginx configuration file:
+    ```
+    ssl_certificate /etc/letsencrypt/live/<yourdomain.com>/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/<yourdomain.com>/privkey.pem;
     ```
 
 
