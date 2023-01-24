@@ -10,7 +10,7 @@ services:
       - "443:443"
     volumes:
       - letsencrypt:/etc/letsencrypt:ro
-      - ../nginx/app.conf:/etc/nginx/app.conf:ro
+      - ../nginx/app.conf:/etc/nginx/nginx.conf:ro
     networks:
       - my-proxy-net
 
