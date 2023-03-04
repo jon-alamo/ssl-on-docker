@@ -14,9 +14,9 @@ services:
     depends_on:
         - dns
     environment:
-      DOMAIN_ARGS: ${HOST_NAME}
-      STAGING_ARG: ${STAGING}
-      EMAIL_ARG: ${EMAIL}
+      DOMAIN_ARGS: ${DOMAIN_ARGS}
+      STAGING_ARG: ${STAGING_ARG}
+      EMAIL_ARG: ${EMAIL_ARG}
 
   dns:
     build: dns
