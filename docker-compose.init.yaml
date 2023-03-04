@@ -4,6 +4,7 @@ version: '3.7'
 services:
   certbot:
     image: certbot/certbot:latest
+    container_name: certbot_init
     command: sh -c "certbot certonly ${DOMAIN_ARGS} ${STAGING_ARG} ${EMAIL_ARG} --standalone --agree-tos --server https://acme-v02.api.letsencrypt.org/directory --verbose --keep-until-expiring --preferred-challenges=http"
     entrypoint: ""
     volumes:
@@ -19,14 +20,13 @@ services:
 
   dns:
     build: dns
-    container_name: dns
+    container_name: dns_init
     environment:
       DO_API_TOKEN: ${DO_API_TOKEN}
       DO_DOMAIN: ${DO_DOMAIN}
       DO_SUBDOMAINS: ${DO_SUBDOMAINS}
       SLEEP_INTERVAL: ${SLEEP_INTERVAL}
     command: "./run.sh"
-    restart: always
 
 
 volumes:
