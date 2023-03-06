@@ -36,6 +36,9 @@ def update_dns():
 
     for subdomain in subdomains:
         sub_info = get_sub_info(subdomain)
+        if not sub_info:
+            print('Subdomain DNS record not found.')
+            continue
         subdomain_ip_address = sub_info['data']
         subdomain_record_id = sub_info['id']
         if current_ip_address == subdomain_ip_address:
